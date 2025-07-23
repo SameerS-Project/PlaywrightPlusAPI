@@ -16,7 +16,7 @@ def test_get_users():
 
 
 @pytest.mark.skip(reason="Reqres returns 401 Unauthorized on POST requests.")
-@pytest.mark.api
+#@pytest.mark.api
 def test_create_user():
     payload = {
         "name": "Sameer",
@@ -32,7 +32,7 @@ def test_create_user():
 
 
 @pytest.mark.skip(reason="Reqres returns 401 Unauthorized on PUT requests.")
-@pytest.mark.api
+#@pytest.mark.api
 def test_update_user():
     payload = {
         "name": "Sameer Updated",
@@ -46,7 +46,7 @@ def test_update_user():
 
 
 @pytest.mark.skip(reason="Reqres returns 401 Unauthorized on PUT requests.")
-@pytest.mark.api
+#@pytest.mark.api
 def test_delete_user():
     headers = {"Content-Type": "application/json"}
     response = requests.delete(f"{BASE_URL}/users/2")
