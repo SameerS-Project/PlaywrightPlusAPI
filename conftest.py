@@ -8,7 +8,7 @@ import requests
 
 #@pytest.fixture(params=["chromium","firefox","webkit"])
 @pytest.fixture
-def browser_name(request):
+def browser_name():
     return "chromium"
     #return request.param
 
@@ -29,8 +29,11 @@ def context(page):
 # --- API pre set up fixture ---
 
 def pytest_generate_tests(metafunc):
+    is_ci = os.getenv("GITHUB_ACTIONS") == "true"
+    browsers = ["chromium", "firefox"] if is_ci else ["chromium", "firefox", "webkit"]
+
     if "browser_name" in metafunc.fixturenames and "ui" in metafunc.definition.keywords:
-        metafunc.parametrize("browser_name", ["chromium", "firefox", "webkit"])
+        metafunc.parametrize("browser_name", browsers)
 
 
 # --- SCREENSHOT + TRACE setup ---
